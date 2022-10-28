@@ -1,0 +1,192 @@
+var site_url = "/";
+var listings = [];
+var map = null;
+
+$(function () {
+  prepareMap();
+  prepareList();
+});
+
+function prepareMap() {
+  $.get(site_url + "data.json")
+    .done(function (data) {
+      // console.log(data);
+      setIntheMap(data);
+    })
+    .fail(function () {
+      alert("error");
+    });
+}
+
+function prepareList() {
+  $.get(site_url + "data.json")
+    .done(function (data) {
+      console.log(data); // setIntheMap(data);
+      var listcontent = "";
+      if (data.length > 0) {
+        $.each(data, function (index, row) {
+          listcontent += buildTemplate(index, row);
+        });
+      } else {
+        listcontent = "No record available";
+      }
+
+      console.log(listcontent);
+      $("#listing-list").html(listcontent);
+    })
+    .fail(function () {
+      alert("error");
+    });
+}
+
+function setIntheMap(data) {
+  let center = new google.maps.LatLng(33.700591, -78.870947);
+
+  if (data.length > 0) {
+    center = new google.maps.LatLng(data[0]["GeoLat"], data[0]["GeoLong"]);
+  }
+
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 14,
+    center: center,
+  });
+
+  initMap(data, map);
+}
+
+function buildTemplate(index, data) {
+  console.log(data);
+  let article =
+    '<article data-index="' +
+    index +
+    '" id="property-' +
+    data.MLSNo +
+    '">' +
+    "<div>" +
+    "$" +
+    data.AskPrice +
+    " - <span>" +
+    data.AddrStreet +
+    "</span>" +
+    "</div>" +
+    "<div>" +
+    data.Address +
+    "</div>" +
+    '<img alt="Condo in ' +
+    data.Address +
+    '" width="200px" src="' +
+    data.location +
+    '">' +
+    "<div> Br /  Ba : 240 SqFt Condo</div></article>";
+
+  return article;
+}
+function initMap(data, map) {
+  var markers = [];
+
+  for (let i = 0; i < data.length; i++) {
+    var content = "";
+
+    let property = data[i];
+    var mlnumber = property.MLSNo;
+    var lati = parseFloat(property["GeoLat"]);
+    var long = parseFloat(property["GeoLong"]);
+
+    const priceTag = document.createElement("div");
+
+    priceTag.className = "price-tag";
+    priceTag.textContent = property.AskPrice;
+    const markerLabel = "$" + (property.AskPrice / 1000).toFixed(0) + "k";
+    const markerIcon = {
+      url: site_url + "images/location.png",
+      scaledSize: new google.maps.Size(32, 32),
+    };
+
+    // Caravan Salon
+
+    var marker = new markerWithLabel.MarkerWithLabel({
+      map: map,
+      animation: google.maps.Animation.DROP,
+      position: new google.maps.LatLng(property.GeoLat, property.GeoLong),
+      icon: markerIcon,
+      // property: property,
+      // MLSNo: property.MLSNo,
+      labelContent: markerLabel,
+      labelAnchor: new google.maps.Point(-20, 0),
+      labelClass: "price-label", // your desired CSS class
+      labelInBackground: true,
+    });
+
+    // var marker = new google.maps.Marker({
+    //     position: new google.maps.LatLng(property.GeoLat, property.GeoLong),
+    //     map: map,
+    //     //content: priceTag,
+    //     icon: markerIcon,
+    //     animation: google.maps.Animation.DROP,
+    //     property: property,
+    //     MLSNo: property.MLSNo,
+    //     labelAnchor: new google.maps.Point(18, 12),
+    //     labelClass: "my-custom-class-for-label", // your desired CSS class
+    //     labelInBackground: true
+    //     label: markerLabel
+    // });
+
+    markers.push(marker);
+
+    var infowindow = new google.maps.InfoWindow();
+
+    // google.maps.event.addListener(marker, 'click', (function(marker, i) {
+    //     return function() {
+    //         infowindow.setContent(content);
+    //         infowindow.open(map, marker);
+    //     }
+    // })(marker, i));
+
+    // google.maps.event.addListener(markers[i], 'mouseover', function(e, mlnumber) {
+    //     // infowindow.setContent('Marker postion: ' + this.getPosition());
+    //     infowindow.setContent($("#property-" + mlnumber).html());
+    //     infowindow.setPosition(this.getPosition());
+    //     infowindow.open(map);
+    // });
+
+    google.maps.event.addListener(
+      marker,
+      "mouseover",
+      (function (marker, content, mlnumber) {
+        return function () {
+          // console.log(mlnumber);
+          infowindow.setContent($("#property-" + mlnumber).html());
+          infowindow.setPosition(this.getPosition());
+          infowindow.open(map, marker);
+        };
+      })(marker, content, mlnumber)
+    );
+
+    // Highlight Icon on hover of sidebar summary
+
+    $(document)
+      .on("mouseenter", "#property-" + property.MLSNo, function () {
+        let index = $(this).data("index");
+        // markers[index].setIcon('https://www.google.com/mapfiles/marker_green.png');
+        // markers[index].setAnimation(google.maps.Animation.BOUNCE);
+        new google.maps.event.trigger(markers[index], "mouseover");
+      })
+      .on("mouseleave", "#property-" + property.MLSNo, function () {
+        // console.log(property.MLSNo);
+        let index = $(this).data("index");
+        markers[index].setIcon(markerIcon);
+      });
+  }
+
+  if (markers.length > 0) {
+    var bounds = new google.maps.LatLngBounds();
+    //  Go through each...
+    $.each(markers, function (index, marker) {
+      bounds.extend(marker.position);
+    });
+    //  Fit these bounds to the map
+    map.fitBounds(bounds);
+  }
+
+  //  Create a new viewpoint bound
+}
