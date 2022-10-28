@@ -1,4 +1,4 @@
-var site_url = "/";
+var site_url = "";
 var listings = [];
 var map = null;
 
@@ -57,11 +57,18 @@ function setIntheMap(data) {
 function buildTemplate(index, data) {
   console.log(data);
   let article =
-    '<article data-index="' +
+    '<div class="constellation"> <article class="artcl" data-index="' +
     index +
     '" id="property-' +
     data.MLSNo +
     '">' +
+    '<div class="boxshd">' +
+    '<div class=img-area><img alt="Condo in ' +
+    data.Address +
+    '" src="' +
+    data.location +
+    '"></div>' +
+    '<div class="box-content">' +
     "<div>" +
     "$" +
     data.AskPrice +
@@ -72,12 +79,7 @@ function buildTemplate(index, data) {
     "<div>" +
     data.Address +
     "</div>" +
-    '<img alt="Condo in ' +
-    data.Address +
-    '" width="200px" src="' +
-    data.location +
-    '">' +
-    "<div> Br /  Ba : 240 SqFt Condo</div></article>";
+    "<div> Br /  Ba : 240 SqFt Condo</div></div></div></article></div>";
 
   return article;
 }
@@ -155,7 +157,12 @@ function initMap(data, map) {
       (function (marker, content, mlnumber) {
         return function () {
           // console.log(mlnumber);
-          infowindow.setContent($("#property-" + mlnumber).html());
+          let content =
+            "<div class='map-market-content'>" +
+            $("#property-" + mlnumber + " .img-area").html();
+          content +=
+            $("#property-" + mlnumber + " .box-content").html() + "</div>";
+          infowindow.setContent(content);
           infowindow.setPosition(this.getPosition());
           infowindow.open(map, marker);
         };
@@ -173,8 +180,8 @@ function initMap(data, map) {
       })
       .on("mouseleave", "#property-" + property.MLSNo, function () {
         // console.log(property.MLSNo);
-        let index = $(this).data("index");
-        markers[index].setIcon(markerIcon);
+        // let index = $(this).data("index");
+        // markers[index].setIcon(markerIcon);
       });
   }
 
