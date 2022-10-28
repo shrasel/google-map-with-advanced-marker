@@ -1,7 +1,7 @@
 var site_url = "";
 var listings = [];
 var map = null;
-
+console.log(site_url);
 $(function () {
   prepareMap();
   prepareList();
@@ -14,7 +14,7 @@ function prepareMap() {
       setIntheMap(data);
     })
     .fail(function () {
-      alert("error");
+      console.log("Error fetching data....");
     });
 }
 
@@ -35,7 +35,7 @@ function prepareList() {
       $("#listing-list").html(listcontent);
     })
     .fail(function () {
-      alert("error");
+      console.log("Error fetching data....");
     });
 }
 
