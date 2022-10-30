@@ -107,19 +107,12 @@ function initMap(data, map) {
 
     // Caravan Salon
 
-    var marker = new markerWithLabel.MarkerWithLabel({
+    var marker = new google.maps.Marker({
       map: map,
       animation: google.maps.Animation.DROP,
       position: new google.maps.LatLng(property.GeoLat, property.GeoLong),
       icon: markerIcon,
-      // property: property,
-      // MLSNo: property.MLSNo,
-      labelContent: markerLabel,
-      labelAnchor: new google.maps.Point(-20, 0),
-      labelClass: "price-label", // your desired CSS class
-      labelInBackground: true,
     });
-
     markers.push(marker);
 
     var infowindow = new google.maps.InfoWindow();
@@ -161,8 +154,10 @@ function initMap(data, map) {
     $(document)
       .on("mouseenter", "#property-" + property.MLSNo, function () {
         let index = $(this).data("index");
-        // markers[index].setIcon('https://www.google.com/mapfiles/marker_green.png');
-        // markers[index].setAnimation(google.maps.Animation.BOUNCE);
+        markers[index].setIcon(
+          "https://www.google.com/mapfiles/marker_green.png"
+        );
+        markers[index].setAnimation(google.maps.Animation.BOUNCE);
         new google.maps.event.trigger(markers[index], "mouseover");
       })
       .on("mouseleave", "#property-" + property.MLSNo, function () {
