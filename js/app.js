@@ -69,17 +69,18 @@ function buildTemplate(index, data) {
     data.location +
     '"></div>' +
     '<div class="box-content">' +
-    "<div>" +
+    "<div><strong>" +
     "$" +
     data.AskPrice +
-    " - <span>" +
-    data.AddrStreet +
-    "</span>" +
-    "</div>" +
+    "</strong></div>" +
     "<div>" +
     data.Address +
     "</div>" +
-    "<div> Br /  Ba : 240 SqFt Condo</div></div></div></article></div>";
+    "<div>" +
+    data.BBF +
+    " Br / " +
+    data.FB +
+    " Ba : 240 SqFt Condo</div></div></div></article></div>";
 
   return article;
 }
