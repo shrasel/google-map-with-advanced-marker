@@ -156,6 +156,10 @@ function initMap(data, map) {
       })(marker, content, mlnumber)
     );
 
+    google.maps.event.addListener(marker, "mouseout", function () {
+      infowindow.close();
+    });
+
     // Highlight Icon on hover of sidebar summary
 
     $(document)
