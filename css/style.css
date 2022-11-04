@@ -97,6 +97,12 @@ h6 {
     }
 }
 
+.container {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
 .parent {
     flex-direction: row-reverse;
     display: grid;
