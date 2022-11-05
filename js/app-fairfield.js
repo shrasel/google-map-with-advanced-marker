@@ -86,7 +86,11 @@ function buildTemplate(index, data) {
     data.totalSqft +
     " SqFt " +
     data.propertyType +
-    "</div></div></div></article></div>";
+    "</div></div><p>Apt. Time: " +
+    data.apptdate +
+    " | " +
+    data.appttime +
+    "</p></div></article></div>";
 
   return article;
 }
@@ -117,7 +121,7 @@ function initMap(data, map) {
       map: map,
       animation: google.maps.Animation.DROP,
       position: new google.maps.LatLng(property.latitude, property.longitude),
-      icon: markerIcon,
+      // icon: markerIcon,
       // property: property,
       // MLSNo: property.MLSNo,
       labelContent: markerLabel,
