@@ -20,7 +20,8 @@
     "longitude": "-91.9669993827182",
     "description": "Fully furnished 2bd/1ba Executive Suite. Furniture removable upon request. Laundry access on site. Minimum 6 month lease. No pets/No smoking. Lawn, pest control, and snow removal included in rent. Utilities tenants responsibility",
     "apptdate": "11/5/2022",
-    "appttime": "10:00 AM"
+    "appttime": "10:00 AM",
+    "leaseTime": "6 Months Lease"
   },
   {
     "MLSNo": 2,
@@ -43,7 +44,9 @@
     "longitude": "-91.96401609572183",
     "description": "Fully furnished 2bd/1ba Executive Suite. Furniture removable upon request. Laundry access on site. Minimum 6 month lease. No pets/No smoking. Lawn, pest control, and snow removal included in rent. Utilities tenants responsibility",
     "apptdate": "11/12/2022",
-    "appttime": "2:30 pm"
+    "appttime": "2:30 pm",
+    "laundry": "In-unit washer and dryer",
+    "leaseTime": "6 month lease"
   },
   {
     "MLSNo": 3,
