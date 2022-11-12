@@ -1,12 +1,17 @@
-Custom Google Map With Markers
 
-How to create a custom map, with multiple markers.
+# Custom Google Map With Markers
 
-Custom Google Map Demo
-
-Folder Structure
+How to create a custom map with multiple markers?
 
 
+## Demo
+
+Here is the link of the demo
+[demo](https://shrasel.github.io/google-map-with-marker-advance/)
+
+
+## Folder Structure
+```bash
 ├── index.html
 ├── images/
 │    ├── properties
@@ -21,3 +26,4 @@ Folder Structure
 │    ├── app-marker-without-laben.js
 └── css/
 │    ├── style.css
+```
