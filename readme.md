@@ -1,7 +1,3 @@
-
-
-
-
 # Google Map with Advanced Marker Functionality
 
 Welcome to the **Google Map with Marker Advance** repository! This repository provides an advanced implementation of Google Maps with two distinct functionalities: **Map Marker with Label** and **Map Marker without Label**. This README will guide you through the setup and usage of these functionalities.
@@ -72,13 +68,13 @@ Before you begin, ensure you have the following:
 1. Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/shrasel/google-map-with-marker-advance.git
+git clone https://github.com/shrasel/google-map-with-advanced-marker.git
 ```
 
 2. Open the repository's directory:
 
 ```bash
-cd google-map-with-marker-advance
+cd google-map-with-advanced-marker
 ```
 
 3. Copy your Google Maps API key and replace `YOUR_API_KEY` in the HTML files:
