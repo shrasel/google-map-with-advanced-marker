@@ -6,13 +6,13 @@
 
 Welcome to the **Google Map with Marker Advance** repository! This repository provides an advanced implementation of Google Maps with two distinct functionalities: **Map Marker with Label** and **Map Marker without Label**. This README will guide you through the setup and usage of these functionalities.
 
-![Google Map with Marker Advance](https://shrasel.github.io/google-map-with-marker-advance/images/map-image-1.png)
+![Google Map with Marker Advance](https://shrasel.github.io/google-map-with-advanced-marker/images/map-image-1.png)
 
 
 ## Demo
 
 Here is the link of the demo
-[demo](https://shrasel.github.io/google-map-with-marker-advance/)
+[demo](https://shrasel.github.io/google-map-with-advanced-marker/)
 
 
 ## Folder Structure
@@ -106,11 +106,5 @@ This section outlines how to use the two marker functionalities provided by this
 
 Contributions to this repository are welcome! Feel free to submit pull requests or open issues for any enhancements, bug fixes, or new features.
 
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
 
 Enjoy using the advanced marker functionalities provided by **Google Map with Marker Advance**! If you have any questions or need assistance, please don't hesitate to reach out.
